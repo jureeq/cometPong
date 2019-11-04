@@ -92,7 +92,24 @@ function Game() {
     window.requestAnimationFrame(loop);
   };
 
-  Game.prototype.checkCollisions = function (){};
+  Game.prototype.checkCollisions = function (){
+    this.comets.forEach( function(comet) {
+    
+      if ( this.platform.didCollide(comet) ) {
+  
+
+        // this.platform.removeLife();
+        // console.log('lives', this.platform.lives);
+        
+        // Move the enemy off screen to the left
+        comet.y = this.canvas.height + comet.size;
+  
+        // if (this.player.lives === 0) {
+        //   this.gameOver();
+        // }
+      }
+    }, this);
+  };
 
   Game.prototype.updateGameStats = function (){};
 

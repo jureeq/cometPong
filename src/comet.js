@@ -16,7 +16,7 @@ Comet.prototype.isInsideScreen = function(){
 };
 
 Comet.prototype.draw = function() {
-  console.log('new comet');
+  // console.log('new comet');
     this.ctx.fillStyle = '#FF6F27';
     // fillRect(x, y, width, height)
     this.ctx.fillRect(

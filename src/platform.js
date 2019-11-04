@@ -4,8 +4,8 @@ function Platform(canvas, lives) {
 
     this.lives = lives;
   
-    this.height = 60;
-    this.width = 10;
+    this.height = 10;
+    this.width = 60;
     this.x = canvas.width / 2;
     this.y = canvas.height * (3/4);
 
@@ -16,7 +16,7 @@ function Platform(canvas, lives) {
   Platform.prototype.draw = function() {
     this.ctx.fillStyle = '#66D3FA';
     // fillRect(x, y, width, height)
-    this.ctx.fillRect(this.x, this.y, this.height, this.width);
+    this.ctx.fillRect(this.x, this.y, this.width, this.height);
   };
 
   Platform.prototype.setDirection = function(direction){
@@ -43,6 +43,29 @@ function Platform(canvas, lives) {
     this.lives -= 1;
   };
 
-  Platform.prototype.didColide = function (){}
+  Platform.prototype.didCollide = function (comet){
+    //collision check with platform
+    var platformLeft = this.x;
+    var platformRight = this.x + this.width;
+    var platformTop = this.y;
+    var platformBottom = this.y + this.height;
+
+    var cometLeft = comet.x;
+    var cometRight = comet.x + comet.size;
+    var cometTop = comet.y;
+    var cometBottom = comet.y + comet.size;
+
+    var crossTop = cometTop <= platformBottom && cometTop >= platformTop;
+    var crossLeft = cometLeft <= platformRight && cometLeft >= platformLeft;
+    var crossRight = cometRight >= platformLeft && cometRight <= platformRight;
+    var crossBottom = cometBottom >= platformTop && cometBottom <= platformBottom;
+    
+    if ((crossTop || crossBottom) && (crossLeft || crossRight)){
+      return true;
+    }
+    return false;
+    
+  }
+    
 
   
