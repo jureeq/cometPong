@@ -26,3 +26,14 @@ Comet.prototype.draw = function() {
       this.size
     );
   };
+
+  Comet.prototype.didCollide = function (){
+    // collision check with the surface
+    var cometBottom = this.y + this.size;
+
+    if (cometBottom >= (this.canvas.height * 0.8))
+    {
+      return true;
+    }
+    return false;
+  };

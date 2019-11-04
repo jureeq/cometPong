@@ -5,9 +5,9 @@ function Platform(canvas, lives) {
     this.lives = lives;
   
     this.height = 10;
-    this.width = 60;
+    this.width = 150;
     this.x = canvas.width / 2;
-    this.y = canvas.height * (3/4);
+    this.y = canvas.height * 0.7;
 
     this.direction = 0;
     this.speed = 10;
@@ -21,10 +21,15 @@ function Platform(canvas, lives) {
 
   Platform.prototype.setDirection = function(direction){
     
-    this.x = this.x + this.direction * this.speed;
-
+    
     if (direction === 'left') this.direction = -1;
     else if (direction === 'right') this.direction = 1;
+
+    // 
+  };
+
+  Platform.prototype.updatePosition = function (){
+    this.x = this.x + this.direction * this.speed;
   };
 
   Platform.prototype.handleScreenCollision = function() {
@@ -34,10 +39,14 @@ function Platform(canvas, lives) {
     var screenLeft = 0;
     var screenRight = this.canvas.width;
 
-    if (this.x > screenRight) this.direction = -1;
-    else if (this.x < screenLeft) this.direction = 1;
+    var platformLeft = this.x;
+    var platformRight = this.x + this.width;
+
+    if (platformRight >= screenRight) this.x = screenRight-this.width;
+    else if (platformLeft <= screenLeft) this.x = 0;
 
   };
+
 
   Platform.prototype.removeLife = function (){
     this.lives -= 1;
@@ -65,7 +74,7 @@ function Platform(canvas, lives) {
     }
     return false;
     
-  }
+  };
     
 
   

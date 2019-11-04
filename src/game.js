@@ -15,6 +15,10 @@ function Game() {
     this.canvasContainer = document.querySelector('.canvas-container');
     this.canvas = document.querySelector('canvas');
     this.ctx = this.canvas.getContext('2d');
+
+    //Save reference to the score
+    this.scoreElement = this.gameScreen.querySelector('.game #score');
+
   
     // Set the canvas to be same as the viewport size
     this.containerWidth = this.canvasContainer.offsetWidth;
@@ -23,17 +27,15 @@ function Game() {
     this.canvas.setAttribute('height', this.containerHeight);
   
     // Create new player
-    this.platform = new Platform(this.canvas, 3);
+    this.platform = new Platform(this.canvas, 10);
   
     // Add event listener for keydown movements
 
     this.handleKeyDown = function(event) {
         if (event.key === 'ArrowLeft'){
-            console.log('LEFT');
             this.platform.setDirection('left');
         }
         else if (event.key === 'ArrowRight'){
-            console.log('RIGHT');
             this.platform.setDirection('right');
         }
     };
@@ -57,9 +59,9 @@ function Game() {
     var loop = function() {
       console.log('in loop');
   
-      if (Math.random() > 0.95) {
+      if (Math.random() > 0.99) {
         var randomX = this.canvas.width * Math.random();
-        var newComet = new Comet(this.canvas, randomX, 5);
+        var newComet = new Comet(this.canvas, randomX, 3);
         this.comets.push(newComet);
       }
 
@@ -74,6 +76,7 @@ function Game() {
 
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
+      this.platform.updatePosition();
       this.platform.draw();
 
       this.comets.forEach(function (comet) {
@@ -86,6 +89,8 @@ function Game() {
         window.requestAnimationFrame(loop);
       }
 
+      this.updateGameStats();
+
   
     }.bind(this);
   
@@ -95,7 +100,7 @@ function Game() {
   Game.prototype.checkCollisions = function (){
     this.comets.forEach( function(comet) {
     
-      if ( this.platform.didCollide(comet) ) {
+      if (this.platform.didCollide(comet) ) {
   
 
         // this.platform.removeLife();
@@ -107,13 +112,41 @@ function Game() {
         // if (this.player.lives === 0) {
         //   this.gameOver();
         // }
+      } else if (comet.didCollide()){
+        this.platform.removeLife();
+        console.log(this.platform.lives);
+
+        comet.y = this.canvas.height + comet.size;
+        console.log('surface');
+
+        if (this.platform.lives === 0){
+          this.gameOver();
+        }
+
       }
     }, this);
   };
 
-  Game.prototype.updateGameStats = function (){};
+  Game.prototype.updateGameStats = function (){
+    this.score += (1/60);
+    this.scoreElement.innerHTML = this.score.toFixed(2) + ' ' + 'sec.';
+  };
 
-  Game.prototype.gameOver = function(){};
+  Game.prototype.gameOver = function(){
+    this.gameIsOver = true;
+    console.log('GAME OVER');
+    this.onGameOverCallback();
+  };
+
+  Game.prototype.passGameOverCallback = function(gameOver){
+    this.onGameOverCallback = gameOver;
+  };
+
+  Game.prototype.removeGameScreen = function (){
+    this.gameScreen.remove();
+  };
+
+
 
 
 
