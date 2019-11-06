@@ -18,9 +18,9 @@ Comet.prototype.isInsideScreen = function(){
 };
 
 Comet.prototype.draw = function() {
-  
+
     var cometIcon = new Image();
-    cometIcon.src = '../images/comet.png';
+    cometIcon.src = "../images/comet.png";
 
     this.ctx.drawImage(cometIcon, this.x, this.y, this.size, this.size);
   };
