@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Space+Mono:400,700&display=swap');
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -45,28 +47,108 @@ table {
 html, body {
     /* scroll: hidden; */
     height: 100%;
+    /* background-color: rgb(15,15,15); */
+  }
+
+  .splash-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+
+    background-image: url(../images/splash-background.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  #planet-box {
+    background-image: url(../images/earth-clouds.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    padding: 25vh;
+    /* margin: 20vh; */
     /* background-color: grey; */
   }
 
+  *{
+    font-family: 'Space Mono', monospace;
+  }
+
+
+  .splash-screen h1 {
+    font-weight: bold;
+    font-size: 60px;
+    color:#FFF4F4;
+  }
+
+  .splash-screen h2 {
+    font-family: 'Space Mono', monospace;
+    font-size: 20px;
+    color:#FFF4F4;
+    
+  }
+
+  main button {
+    font-family: 'Space Mono', monospace;
+    background:linear-gradient(to bottom, #1e1e1e 5%, #202020 100%);
+    background-color:#404040;
+    border-radius:3px;
+    border:1px solid #124d77;
+    display:inline-block;
+    cursor:pointer;
+    color:#FFF4F4;
+    /* font-family:Verdana; */
+    font-size:22px;
+    /* font-weight: 700; */
+    padding:11px 26px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #154682;
+  }
+  main button:hover {
+    background:linear-gradient(to bottom, #000000 5%, #404040 100%);
+    background-color:#000000;
+  }
+  
   
   .canvas-container {
     height: 100%;
-    width: 700px;
+    width: 600px;
     margin: 0 auto;
+    background-image: url(../images/game_background3.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: bottom;
   }
   
   .game {
-    text-align: center;
     display: flex;
-    flex-direction: column;
-    height: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
     width: 100%;
+    background-color: #242424;
   }
 
-  .game .lives {
-    flex: 1;
-  }
-  
   .game .score {
-    flex: 1;
+    color:#FFF4F4;
+    /* border: 5px solid #FFF4F4; */
+    padding: 15px;
+    height: 20px;
+    text-align: right;
+    flex-basis: 20%;
   }
+  .game .lives {
+    color:#FFF4F4;
+    /* border: 5px solid #FFF4F4; */
+    padding: 15px;
+    height: 20px;
+    text-align: left;
+    flex-basis: 20%;
+  }
+
+ 

@@ -18,6 +18,7 @@ function Game() {
 
     //Save reference to the score
     this.scoreElement = this.gameScreen.querySelector('.game #score');
+    this.livesElement = this.gameScreen.querySelector('.game #lives');
 
   
     // Set the canvas to be same as the viewport size
@@ -28,6 +29,8 @@ function Game() {
   
     // Create new player
     this.platform = new Platform(this.canvas, 10);
+
+    //draw a planet
   
     // Add event listener for keydown movements
 
@@ -60,8 +63,9 @@ function Game() {
       console.log('in loop');
   
       if (Math.random() > 0.99) {
-        var randomX = this.canvas.width * Math.random();
-        var newComet = new Comet(this.canvas, randomX, 3);
+        var randomX = (this.canvas.width-40) * Math.random();
+        var randomDirectionX = Math.floor(Math.random()*3)-1;
+        var newComet = new Comet(this.canvas, randomX, randomDirectionX, 3);
         this.comets.push(newComet);
       }
 
@@ -116,6 +120,7 @@ function Game() {
         this.platform.removeLife();
         console.log(this.platform.lives);
 
+
         comet.y = this.canvas.height + comet.size;
         console.log('surface');
 
@@ -130,6 +135,8 @@ function Game() {
   Game.prototype.updateGameStats = function (){
     this.score += (1/60);
     this.scoreElement.innerHTML = this.score.toFixed(2) + ' ' + 'sec.';
+    this.livesElement.innerHTML = this.platform.lives;
+    
   };
 
   Game.prototype.gameOver = function(){

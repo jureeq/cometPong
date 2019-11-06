@@ -1,14 +1,16 @@
-function Comet(canvas, x, speed) {
+function Comet(canvas, x, directionX, speed) {
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
-    this.size = 20;
+    this.size = 40;
     this.x = x;
     this.y = 0;
     this.speed = speed;
+    this.directionX = directionX;
 }
 
 Comet.prototype.updatePosition = function(){
   this.y = this.y + this.speed;
+  this.x = this.x + this.directionX;
 };
 
 Comet.prototype.isInsideScreen = function(){
@@ -16,22 +18,28 @@ Comet.prototype.isInsideScreen = function(){
 };
 
 Comet.prototype.draw = function() {
-  // console.log('new comet');
-    this.ctx.fillStyle = '#FF6F27';
-    // fillRect(x, y, width, height)
-    this.ctx.fillRect(
-      this.x,
-      this.y,
-      this.size,
-      this.size
-    );
+  // // console.log('new comet');
+  //   this.ctx.fillStyle = '#FF6F27';
+  //   // fillRect(x, y, width, height)
+  //   this.ctx.fillRect(
+  //     this.x,
+  //     this.y,
+  //     this.size,
+  //     this.size
+  //   );
+
+    var cometIcon = new Image();
+    cometIcon.src = '../images/comet.png';
+
+    this.ctx.drawImage(cometIcon, this.x, this.y, this.size, this.size);
   };
 
   Comet.prototype.didCollide = function (){
     // collision check with the surface
     var cometBottom = this.y + this.size;
+    var cometCenterX = this.x - this.size/2;
 
-    if (cometBottom >= (this.canvas.height * 0.8))
+    if (cometBottom >= (this.canvas.height * 0.8) && cometCenterX > 0 && cometCenterX < this.canvas.width - this.size/2)
     {
       return true;
     }
