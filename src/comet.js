@@ -45,3 +45,26 @@ Comet.prototype.draw = function() {
     }
     return false;
   };
+  
+  Comet.prototype.didCollideToAnother = function (otherComet) {
+    
+    var cometLeft = this.x;
+    var cometRight = this.x + this.size;
+    var cometTop = this.y;
+    var cometBottom = this.y + this.size;
+
+    var otherCometLeft = otherComet.x;
+    var otherCometRight = otherComet.x + otherComet.size;
+    var otherCometTop = otherComet.y;
+    var otherCometBottom = otherComet.y + otherComet.size;
+
+    var crossTop = otherCometTop <= cometBottom && otherCometTop >= cometTop;
+    var crossLeft = otherCometLeft <= cometRight && otherCometLeft >= cometLeft;
+    var crossRight = otherCometRight >= cometLeft && otherCometRight <= cometRight;
+    var crossBottom = otherCometBottom >= cometTop && otherCometBottom <= cometBottom;
+    
+    if ((crossTop || crossBottom) && (crossLeft || crossRight)){
+      return true;
+    }
+    return false;
+  };

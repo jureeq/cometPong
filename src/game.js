@@ -37,7 +37,7 @@ function Game() {
 
   
     // Create new player
-    this.platform = new Platform(this.canvas, 3);
+    this.platform = new Platform(this.canvas, 5);
 
   
     // Add event listener for keydown movements
@@ -112,13 +112,29 @@ function Game() {
   };
 
   Game.prototype.checkCollisions = function (){
-    this.comets.forEach( function(comet) {
+    this.comets.forEach( function(comet, idx) {
+
+      this.comets.forEach (function (otherComet, otherIdx) {
+        if (idx === otherIdx){
+          return;
+        }
+        if (comet.didCollideToAnother(otherComet)){
+          console.log('collision');
+          comet.y = this.canvas.height + comet.size;
+          
+          otherComet.y = this.canvas.height + otherComet.size;
+
+          //should find a different way
+          comet.x += this.canvas.width;
+          otherComet.x += this.canvas.width; 
+        }
+      }, this);
     
       if (this.platform.didCollide(comet) ) {
   
         // comet.y = this.canvas.height + comet.size;
       
-        comet.speed = -comet.speed;
+        comet.speed = -comet.speed-1;
   
       } else if (comet.didCollide()){
         this.platform.removeLife();
@@ -130,8 +146,7 @@ function Game() {
         if (this.platform.lives === 0){
           this.gameOver(this.score);
         }
-
-      }
+      } 
     }, this);
   };
 
