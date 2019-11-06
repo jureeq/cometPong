@@ -106,20 +106,13 @@ function Game() {
     
       if (this.platform.didCollide(comet) ) {
   
-
-        // this.platform.removeLife();
-        // console.log('lives', this.platform.lives);
-        
-        // Move the enemy off screen to the left
-        comet.y = this.canvas.height + comet.size;
+        // comet.y = this.canvas.height + comet.size;
+      
+        comet.speed = -comet.speed;
   
-        // if (this.player.lives === 0) {
-        //   this.gameOver();
-        // }
       } else if (comet.didCollide()){
         this.platform.removeLife();
         console.log(this.platform.lives);
-
 
         comet.y = this.canvas.height + comet.size;
         console.log('surface');
