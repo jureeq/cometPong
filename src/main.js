@@ -82,10 +82,15 @@ function buildDom(htmlString) {
 
     function createGameOverScreen(score) {
       gameOverScreen = buildDom(`
-      <main>
-        <h1>Game over</h1>
-        <p>Your score: <span></span></p>
-        <button>Restart</button>
+      <main class="game-over">
+        <div class="stats-contatiner">
+          <h1>GAME OVER</h1>
+          <p>You heroically defended the planet for <span></span> seconds!</p>
+          <p>Unfortunately, the Earth was burned to the ground. There are no signs of life anywhere...</p>
+        </div>
+        <div class="button-container">
+            <button>Try again</button>
+        </div>
       </main>
     ` );
 
