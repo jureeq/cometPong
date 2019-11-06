@@ -6,6 +6,7 @@ function Comet(canvas, x, directionX, speed, size) {
     this.y = 0;
     this.speed = speed;
     this.directionX = directionX;
+    this.cometIcon;
 }
 
 Comet.prototype.updatePosition = function(){
@@ -19,8 +20,8 @@ Comet.prototype.isInsideScreen = function(){
 
 Comet.prototype.draw = function() {
 
-    var cometIcon = new Image();
-    cometIcon.url = "./images/comet.png";
+    cometIcon = new Image();
+    cometIcon.src = '../images/comet.png';
 
     this.ctx.drawImage(cometIcon, this.x, this.y, this.size, this.size);
   };
