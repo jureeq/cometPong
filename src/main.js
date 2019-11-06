@@ -9,12 +9,13 @@ function buildDom(htmlString) {
     var game;
     var splashScreen;
     var gameOverScreen;
+    var finalScore;
   
     function createSplashScreen() {
       splashScreen = buildDom(`
        <main class="splash-screen">
         <div>
-        <h1>.cometPong.</h1>
+        <h1>.meteorPong.</h1>
         <h2>defend the planet!</h2>
         </div>
         <div id="planet-box">
@@ -67,8 +68,9 @@ function buildDom(htmlString) {
       game.gameScreen = createGameScreen();
   
       game.start();
-      game.passGameOverCallback(gameOver);
-
+      game.passGameOverCallback(function() {
+        gameOver(game.score.toFixed(2));
+      });
     }
   
     createSplashScreen();

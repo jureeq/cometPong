@@ -11,6 +11,7 @@ function Game() {
   }
   
   Game.prototype.start = function() {
+
     // Get the canvas element, create ctx, save canvas and ctx in the game object
     this.canvasContainer = document.querySelector('.canvas-container');
     this.canvas = document.querySelector('canvas');
@@ -27,10 +28,17 @@ function Game() {
     this.canvas.setAttribute('width', this.containerWidth);
     this.canvas.setAttribute('height', this.containerHeight);
   
-    // Create new player
-    this.platform = new Platform(this.canvas, 100);
+    // Sounds
+    // var myAudio = document.createElement("audio");
+    // myAudio.src = "../sounds/game.mp3";
+    // myAudio.play();
+    // myAudio.loop = true;
+    // myAudio.pause();
 
-    //draw a planet
+  
+    // Create new player
+    this.platform = new Platform(this.canvas, 3);
+
   
     // Add event listener for keydown movements
 
@@ -65,7 +73,9 @@ function Game() {
       if (Math.random() > 0.98) {
         var randomX = (this.canvas.width-40) * Math.random();
         var randomDirectionX = Math.floor(Math.random()*3)-1;
-        var newComet = new Comet(this.canvas, randomX, randomDirectionX, 3);
+        var randomSpeed = Math.floor(Math.random()*3+2);
+        var randomSize = Math.floor(Math.random() * (60 - 30 + 1)) + 30;
+        var newComet = new Comet(this.canvas, randomX, randomDirectionX, randomSpeed, randomSize);
         this.comets.push(newComet);
       }
 
@@ -118,7 +128,7 @@ function Game() {
         console.log('surface');
 
         if (this.platform.lives === 0){
-          this.gameOver();
+          this.gameOver(this.score);
         }
 
       }
@@ -132,7 +142,7 @@ function Game() {
     
   };
 
-  Game.prototype.gameOver = function(){
+  Game.prototype.gameOver = function(score){
     this.gameIsOver = true;
     console.log('GAME OVER');
     this.onGameOverCallback();

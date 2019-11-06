@@ -1,7 +1,7 @@
-function Comet(canvas, x, directionX, speed) {
+function Comet(canvas, x, directionX, speed, size) {
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
-    this.size = 40;
+    this.size = size;
     this.x = x;
     this.y = 0;
     this.speed = speed;
