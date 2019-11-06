@@ -18,16 +18,7 @@ Comet.prototype.isInsideScreen = function(){
 };
 
 Comet.prototype.draw = function() {
-  // // console.log('new comet');
-  //   this.ctx.fillStyle = '#FF6F27';
-  //   // fillRect(x, y, width, height)
-  //   this.ctx.fillRect(
-  //     this.x,
-  //     this.y,
-  //     this.size,
-  //     this.size
-  //   );
-
+  
     var cometIcon = new Image();
     cometIcon.src = '../images/comet.png';
 

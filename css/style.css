@@ -175,6 +175,8 @@ html, body {
     background-repeat: no-repeat;
     background-position: center;
     
+    /* height: 100vh;
+    width: 100vw; */
     padding: 63vh 10vw 18vh;
     
   }

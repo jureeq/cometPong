@@ -70,11 +70,11 @@ function Game() {
     var loop = function() {
       console.log('in loop');
   
-      if (Math.random() > 0.98) {
+      if (Math.random() > 0.97) {
         var randomX = (this.canvas.width-40) * Math.random();
         var randomDirectionX = Math.floor(Math.random()*3)-1;
-        var randomSpeed = Math.floor(Math.random()*3+2);
-        var randomSize = Math.floor(Math.random() * (60 - 30 + 1)) + 30;
+        var randomSpeed = Math.floor(Math.random()*3+3);
+        var randomSize = Math.floor(Math.random() * (60 - 20 + 1)) + 20;
         var newComet = new Comet(this.canvas, randomX, randomDirectionX, randomSpeed, randomSize);
         this.comets.push(newComet);
       }
