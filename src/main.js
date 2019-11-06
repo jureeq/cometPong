@@ -38,15 +38,15 @@ function buildDom(htmlString) {
     function createGameScreen() {
       var gameScreen = buildDom(`
         <main class="game">
-        <div class="score">
-          <span>Score: </span></br><span id="score">0</span>
-        </div>
+          <div class="lives">
+            <span id="lives">0</span></br><span>Lives</span>
+          </div>
           <section class="canvas-container">
             <canvas></canvas>
           </section>
-        <div class="lives">
-          <span>Lives: </span></br><span id="lives">0</span>
-        </div>
+          <div class="score">
+            <span>Score </span></br><span id="score">0</span>
+          </div>
         </main>
      `);
   

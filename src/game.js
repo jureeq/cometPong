@@ -28,7 +28,7 @@ function Game() {
     this.canvas.setAttribute('height', this.containerHeight);
   
     // Create new player
-    this.platform = new Platform(this.canvas, 10);
+    this.platform = new Platform(this.canvas, 100);
 
     //draw a planet
   
@@ -62,7 +62,7 @@ function Game() {
     var loop = function() {
       console.log('in loop');
   
-      if (Math.random() > 0.99) {
+      if (Math.random() > 0.98) {
         var randomX = (this.canvas.width-40) * Math.random();
         var randomDirectionX = Math.floor(Math.random()*3)-1;
         var newComet = new Comet(this.canvas, randomX, randomDirectionX, 3);
