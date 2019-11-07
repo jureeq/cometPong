@@ -26,6 +26,8 @@ function buildDom(htmlString) {
       `);
   
       document.body.appendChild(splashScreen);
+
+      launchAudio.play();
   
       var startButton = splashScreen.querySelector('button');
       startButton.addEventListener('click', function() {
@@ -76,7 +78,7 @@ function buildDom(htmlString) {
     }
   
     createSplashScreen();
-    launchAudio.play();
+    
 
     function gameOver(score, bonus){
       removeGameScreen();

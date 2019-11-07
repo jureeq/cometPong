@@ -42,13 +42,7 @@ function Game() {
 
     this.gameMusic.play();
     this.gameMusic.loop = true;
-
-
     
-    
-    
-
-  
     // Create new player
     this.platform = new Platform(this.canvas, 5);
 
