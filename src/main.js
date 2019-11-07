@@ -24,7 +24,6 @@ function buildDom(htmlString) {
         </div>
        </main>
       `);
-      launchAudio.play();
   
       document.body.appendChild(splashScreen);
   
@@ -77,6 +76,7 @@ function buildDom(htmlString) {
     }
   
     createSplashScreen();
+    launchAudio.play();
 
     function gameOver(score, bonus){
       removeGameScreen();
