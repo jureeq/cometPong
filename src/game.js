@@ -9,6 +9,7 @@ function Game() {
     this.bonus = 0;
     this.gameIsOver = false;
     this.comets = [];
+    this.level = 1;
   }
   
   Game.prototype.start = function() {
@@ -69,16 +70,51 @@ function Game() {
   
   Game.prototype.startLoop = function() {
     var loop = function() {
-      console.log('in loop');
+      // console.log('in loop');
   
-      if (Math.random() > 0.97) {
-        var randomX = (this.canvas.width-40) * Math.random();
-        var randomDirectionX = Math.floor(Math.random()*3)-1;
-        var randomSpeed = Math.floor(Math.random()*3+3);
-        var randomSize = Math.floor(Math.random() * (60 - 20 + 1)) + 20;
-        var newComet = new Comet(this.canvas, randomX, randomDirectionX, randomSpeed, randomSize);
-        this.comets.push(newComet);
+      var randomX = 0;
+      var randomDirectionX = 0;
+      var randomSpeed = 0;
+      var randomSize = 0;
+      var newComet;
+      
+      switch (this.level) {
+        case 1:
+          if (Math.random() > 0.98) {
+            randomX = (this.canvas.width-40) * Math.random();
+            randomDirectionX = Math.floor(Math.random()*3)-1;
+            randomSpeed = Math.floor(Math.random()*2+2);
+            randomSize = Math.floor(Math.random() * (60 - 40 + 1)) + 40;
+            newComet = new Comet(this.canvas, randomX, randomDirectionX, randomSpeed, randomSize);
+            this.comets.push(newComet);
+          }
+          break;
+
+        case 2:
+          if (Math.random() > 0.97) {
+            randomX = (this.canvas.width-40) * Math.random();
+            randomDirectionX = Math.floor(Math.random()*3)-1;
+            randomSpeed = Math.floor(Math.random()*3+2);
+            randomSize = Math.floor(Math.random() * (60 - 30 + 1)) + 30;
+            newComet = new Comet(this.canvas, randomX, randomDirectionX, randomSpeed, randomSize);
+            this.comets.push(newComet);
+          }
+          break;
+        case 3:
+          if (Math.random() > 0.96) {
+            randomX = (this.canvas.width-40) * Math.random();
+            randomDirectionX = Math.floor(Math.random()*3)-1;
+            randomSpeed = Math.floor(Math.random()*4+3);
+            randomSize = Math.floor(Math.random() * (60 - 20 + 1)) + 20;
+            newComet = new Comet(this.canvas, randomX, randomDirectionX, randomSpeed, randomSize);
+            this.comets.push(newComet);
+          }
+          break;
+
+        default:
+          break;
       }
+      
 
       this.checkCollisions();
 
@@ -94,15 +130,27 @@ function Game() {
       this.platform.updatePosition();
       this.platform.draw();
 
+      
+      
+
       this.comets.forEach(function (comet) {
         comet.draw();
       });
 
+      this.showLevel();
       
-
+      if (this.score > 25){
+        this.level = 2;
+      }
+      if (this.score > 50){
+        this.level = 3;
+      }
+      
       if (!this.gameIsOver){
         window.requestAnimationFrame(loop);
       }
+
+
 
       this.updateGameStats();
 
@@ -120,9 +168,8 @@ function Game() {
           return;
         }
         if (comet.didCollideToAnother(otherComet)){
-          console.log('collision');
+  
           comet.y = this.canvas.height + comet.size;
-          
           otherComet.y = this.canvas.height + otherComet.size;
 
           //probably should find a different way
@@ -160,9 +207,29 @@ function Game() {
     this.bonusElement.innerHTML = this.bonus;
   };
 
+  Game.prototype.showLevel = function () {
+    if (this.level === 1){
+      this.ctx.font = '40px monospace';
+      this.ctx.fillStyle = '#FFF4F4';
+      this.ctx.textAlign = 'center';
+      this.ctx.fillText('.easy.', this.canvas.width*(1/2), 100);
+    } else if (this.level === 2){
+      this.ctx.font = '40px monospace';
+      this.ctx.fillStyle = '#7a7a7a';
+      this.ctx.textAlign = 'center';
+      this.ctx.fillText('.not.so.easy.', this.canvas.width*(1/2), 100);
+    } else if (this.level === 3){
+      this.ctx.font = '40px monospace';
+      this.ctx.fillStyle = '#8b0000';
+      this.ctx.textAlign = 'center';
+      this.ctx.fillText('.NOT.easy.', this.canvas.width*(1/2), 100);
+    }
+      
+    };
+
   Game.prototype.gameOver = function(score){
     this.gameIsOver = true;
-    console.log('GAME OVER');
+    console.log('GAME OVER'+this.level);
     this.onGameOverCallback();
   };
 
