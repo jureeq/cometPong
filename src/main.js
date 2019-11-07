@@ -9,9 +9,10 @@ function buildDom(htmlString) {
     var game;
     var splashScreen;
     var gameOverScreen;
-    var finalScore;
+    var launchAudio = new Audio('sounds/launch.mp3');
   
     function createSplashScreen() {
+      
       splashScreen = buildDom(`
        <main class="splash-screen">
         <div>
@@ -23,6 +24,7 @@ function buildDom(htmlString) {
         </div>
        </main>
       `);
+      launchAudio.play();
   
       document.body.appendChild(splashScreen);
   
