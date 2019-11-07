@@ -10,6 +10,11 @@ function Game() {
     this.gameIsOver = false;
     this.comets = [];
     this.level = 1;
+
+    this.gameMusic = new Audio('sounds/game.mp3');
+    this.gameOverSound = new Audio('sounds/game-over.wav');
+    this.levelUpSound = new Audio('sounds/wow.wav');
+    this.boomSound = new Audio('sounds/boom.mp3');
   }
   
   Game.prototype.start = function() {
@@ -31,11 +36,17 @@ function Game() {
     this.canvas.setAttribute('height', this.containerHeight);
   
     // Sounds
-    // var myAudio = document.createElement("audio");
-    // myAudio.src = "../sounds/game.mp3";
-    // myAudio.play();
-    // myAudio.loop = true;
-    // myAudio.pause();
+    
+    // this.gameOverSound.src = "../sounds/game-over.wav";
+    // this.leveUpSound.src = "../sounds/levelup.wav";
+
+    this.gameMusic.play();
+    this.gameMusic.loop = true;
+
+
+    
+    
+    
 
   
     // Create new player
@@ -130,21 +141,13 @@ function Game() {
       this.platform.updatePosition();
       this.platform.draw();
 
-      
-      
-
       this.comets.forEach(function (comet) {
         comet.draw();
       });
 
       this.showLevel();
       
-      if (this.score > 25){
-        this.level = 2;
-      }
-      if (this.score > 50){
-        this.level = 3;
-      }
+      this.levelUp();
       
       if (!this.gameIsOver){
         window.requestAnimationFrame(loop);
@@ -188,12 +191,12 @@ function Game() {
   
       } else if (comet.didCollide()){
         this.platform.removeLife();
-        console.log(this.platform.lives);
-
+        // console.log(this.platform.lives);
+        this.boomSound.play();
         comet.y = this.canvas.height + comet.size;
-        console.log('surface');
 
         if (this.platform.lives === 0){
+          this.gameMusic.pause();
           this.gameOver(this.score);
         }
       } 
@@ -227,9 +230,18 @@ function Game() {
       
     };
 
+  Game.prototype.levelUp = function(){
+      if ((this.level < 2 && this.score > 25) || (this.level < 3 && this.score > 50)){
+        this.level += 1;
+        this.levelUpSound.play();
+      }
+  };
+
   Game.prototype.gameOver = function(score){
+    
     this.gameIsOver = true;
-    console.log('GAME OVER'+this.level);
+    this.gameOverSound.play();
+    // console.log('GAME OVER'+this.level);
     this.onGameOverCallback();
   };
 
@@ -240,6 +252,7 @@ function Game() {
   Game.prototype.removeGameScreen = function (){
     this.gameScreen.remove();
   };
+
 
 
 

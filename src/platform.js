@@ -4,7 +4,7 @@ function Platform(canvas, lives) {
 
     this.lives = lives;
   
-    this.height = 20;
+    this.height = 15;
     this.width = 150;
     this.x = canvas.width / 2;
     this.y = canvas.height * 0.7;
