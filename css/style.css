@@ -97,7 +97,7 @@ html, body {
     background:linear-gradient(to bottom, #1e1e1e 5%, #202020 100%);
     background-color:#404040;
     border-radius:3px;
-    border:1px solid #124d77;
+    border:1px solid #404040;
     display:inline-block;
     cursor:pointer;
     color:#FFF4F4;
@@ -106,7 +106,7 @@ html, body {
     /* font-weight: 700; */
     padding:11px 26px;
     text-decoration:none;
-    text-shadow:0px 1px 0px #154682;
+    text-shadow:0px 1px 0px #404040;
   }
   main button:hover {
     background:linear-gradient(to bottom, #000000 5%, #404040 100%);
@@ -177,7 +177,8 @@ html, body {
     
     /* height: 100vh;
     width: 100vw; */
-    padding: 63vh 10vw 18vh;
+    padding: 30em 6em 13em;
+    
     
   }
 
@@ -187,7 +188,7 @@ html, body {
   }
 
   .game-over h1 {
-    font-weight: bold;
+    font-weight: 700;
     font-size: 60px;
     color:#8b0000;
     margin-bottom: 10vh;

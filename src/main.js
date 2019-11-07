@@ -46,7 +46,8 @@ function buildDom(htmlString) {
             <canvas></canvas>
           </section>
           <div class="score">
-            <span>Score </span></br><span id="score">0</span>
+            <span>Score </span></br><span id="score">0</span></br></br>
+            <span>Bonus</span></br><span id="bonus">0</span><span> meteors destoyed</span>
           </div>
         </main>
      `);
@@ -69,24 +70,25 @@ function buildDom(htmlString) {
   
       game.start();
       game.passGameOverCallback(function() {
-        gameOver(game.score.toFixed(2));
+        gameOver(game.score.toFixed(2), game.bonus);
       });
     }
   
     createSplashScreen();
 
-    function gameOver(score){
+    function gameOver(score, bonus){
       removeGameScreen();
-      createGameOverScreen(score);
+      createGameOverScreen(score, bonus);
     }
 
-    function createGameOverScreen(score) {
+    function createGameOverScreen(score, bonus) {
       gameOverScreen = buildDom(`
       <main class="game-over">
         <div class="stats-contatiner">
-          <h1>GAME OVER</h1>
-          <p>You heroically defended the planet for <span></span> seconds!</p>
-          <p>Unfortunately, the Earth was burned to the ground. There are no signs of life anywhere...</p>
+          <h1>.GAME OVER.</h1>
+          <p id="bonus-container">You heroically defended the planet for </br><span id="score"></span> seconds </br></br>and managed to destroy </br><span id="bonus"></span> meteors!</p>
+          
+          <p>Unfortunately, the Earth was burned to the ground. <br>There are no signs of life anywhere...</p>
         </div>
         <div class="button-container">
             <button>Try again</button>
@@ -97,8 +99,13 @@ function buildDom(htmlString) {
     var button = gameOverScreen.querySelector('button');
     button.addEventListener('click', startGame);
   
-    var span = gameOverScreen.querySelector('span');
-    span.innerText = score;
+    var scoreCont = gameOverScreen.querySelector('#score');
+    scoreCont.innerText = score;
+
+
+    var bonusCont = gameOverScreen.querySelector('#bonus');
+    bonusCont.innerText = bonus;
+    
   
     document.body.appendChild(gameOverScreen);
     }
@@ -107,9 +114,7 @@ function buildDom(htmlString) {
       if (gameOverScreen !== undefined) {
         gameOverScreen.remove();
       }
-    }
-
-    
+    }  
   }
   
   window.onload = main;

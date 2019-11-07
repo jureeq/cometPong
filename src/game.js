@@ -6,6 +6,7 @@ function Game() {
     this.gameIsOver = false;
     this.gameScreen = null;
     this.score = 0;
+    this.bonus = 0;
     this.gameIsOver = false;
     this.comets = [];
   }
@@ -20,7 +21,7 @@ function Game() {
     //Save reference to the score
     this.scoreElement = this.gameScreen.querySelector('.game #score');
     this.livesElement = this.gameScreen.querySelector('.game #lives');
-
+    this.bonusElement = this.gameScreen.querySelector('.game #bonus');
   
     // Set the canvas to be same as the viewport size
     this.containerWidth = this.canvasContainer.offsetWidth;
@@ -124,9 +125,11 @@ function Game() {
           
           otherComet.y = this.canvas.height + otherComet.size;
 
-          //should find a different way
+          //probably should find a different way
           comet.x += this.canvas.width;
           otherComet.x += this.canvas.width; 
+
+          this.bonus += 2;
         }
       }, this);
     
@@ -154,7 +157,7 @@ function Game() {
     this.score += (1/60);
     this.scoreElement.innerHTML = this.score.toFixed(2) + ' ' + 'sec.';
     this.livesElement.innerHTML = this.platform.lives;
-    
+    this.bonusElement.innerHTML = this.bonus;
   };
 
   Game.prototype.gameOver = function(score){
