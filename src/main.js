@@ -47,7 +47,7 @@ function buildDom(htmlString) {
           </section>
           <div class="score">
             <span>Score </span></br><span id="score">0</span></br></br>
-            <span>Bonus</span></br><span id="bonus">0</span><span> meteors destoyed</span>
+            <span>Bonus</span></br><span id="bonus">0</span><span> meteors destroyed</span>
           </div>
         </main>
      `);
@@ -86,7 +86,14 @@ function buildDom(htmlString) {
       <main class="game-over">
         <div class="stats-contatiner">
           <h1>.GAME OVER.</h1>
-          <p id="bonus-container">You heroically defended the planet for </br><span id="score"></span> seconds </br></br>and managed to destroy </br><span id="bonus"></span> meteors!</p>
+          <p id="bonus-container">You heroically defended the planet for </br>
+          <span id="score"></span> seconds </br></br>
+          and managed to destroy </br>
+          <span id="bonus"></span> meteors!</br></br>
+          what gives you a total score</br>
+          <span id="score2"></span> x 100 + <span id="bonus2"></span> x 50 = </br></br></br>
+          <span id="totalScore"></span></p>
+          
           
           <p>Unfortunately, the Earth was burned to the ground. <br>There are no signs of life anywhere...</p>
         </div>
@@ -102,10 +109,17 @@ function buildDom(htmlString) {
     var scoreCont = gameOverScreen.querySelector('#score');
     scoreCont.innerText = score;
 
-
     var bonusCont = gameOverScreen.querySelector('#bonus');
     bonusCont.innerText = bonus;
+
+    var scoreCont2 = gameOverScreen.querySelector('#score2');
+    scoreCont2.innerText = score;
+
+    var bonusCont2 = gameOverScreen.querySelector('#bonus2');
+    bonusCont2.innerText = bonus;
     
+    var totalScoreCont = gameOverScreen.querySelector('#totalScore');
+    totalScoreCont.innerText = score * 100 + bonus * 50;
   
     document.body.appendChild(gameOverScreen);
     }

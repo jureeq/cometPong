@@ -206,6 +206,13 @@ html, body {
     font-size: 1.5em;
   }
 
+  .game-over #totalScore {
+    font-size: 2.5em;
+    border-top: 2px solid #FFF4F4;
+    padding: 0 10vw 5px;
+    border-bottom: 2px solid #FFF4F4;
+  }
+
 
 
  
