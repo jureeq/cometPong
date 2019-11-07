@@ -4,7 +4,7 @@ function Platform(canvas, lives) {
 
     this.lives = lives;
   
-    this.height = 15;
+    this.height = 30;
     this.width = 150;
     this.x = canvas.width / 2;
     this.y = canvas.height * 0.7;
@@ -14,9 +14,10 @@ function Platform(canvas, lives) {
   }
   
   Platform.prototype.draw = function() {
-    this.ctx.fillStyle = '#66D3FA';
-    // fillRect(x, y, width, height)
-    this.ctx.fillRect(this.x, this.y, this.width, this.height);
+    var platformIcon = new Image();
+    platformIcon.src = './images/platform.png';
+
+    this.ctx.drawImage(platformIcon, this.x, this.y, this.width, this.height);
   };
 
   Platform.prototype.setDirection = function(direction){
