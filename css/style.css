@@ -189,7 +189,7 @@ html, body {
 
   .game-over h1 {
     font-weight: 700;
-    font-size: 60px;
+    font-size: 5em;
     color:#8b0000;
     margin-bottom: 10vh;
   }
@@ -198,7 +198,6 @@ html, body {
     color:#FFF4F4;
     width: 40vw;
     margin-bottom: 10vh;
-  
   }
 
   .game-over span {

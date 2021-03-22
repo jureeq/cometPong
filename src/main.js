@@ -1,15 +1,14 @@
 function buildDom(htmlString) {
     const div = document.createElement('div');
     div.innerHTML = htmlString;
-  
     return div.children[0];
   }
   
   function main() {
-    var game;
-    var splashScreen;
-    var gameOverScreen;
-    var launchAudio = new Audio('sounds/launch.mp3');
+    let game;
+    let splashScreen;
+    let gameOverScreen;
+    let launchAudio = new Audio('sounds/launch.mp3');
   
     function createSplashScreen() {
       
@@ -29,7 +28,7 @@ function buildDom(htmlString) {
 
       launchAudio.play();
   
-      var startButton = splashScreen.querySelector('button');
+      let startButton = splashScreen.querySelector('button');
       startButton.addEventListener('click', function() {
         startGame();
       });
@@ -40,7 +39,7 @@ function buildDom(htmlString) {
     }
   
     function createGameScreen() {
-      var gameScreen = buildDom(`
+      let gameScreen = buildDom(`
         <main class="game">
           <div class="lives">
             <span id="lives">0</span></br><span>Lives</span>
@@ -107,22 +106,22 @@ function buildDom(htmlString) {
       </main>
     ` );
 
-    var button = gameOverScreen.querySelector('button');
+    let button = gameOverScreen.querySelector('button');
     button.addEventListener('click', startGame);
   
-    var scoreCont = gameOverScreen.querySelector('#score');
+    let scoreCont = gameOverScreen.querySelector('#score');
     scoreCont.innerText = score;
 
-    var bonusCont = gameOverScreen.querySelector('#bonus');
+    let bonusCont = gameOverScreen.querySelector('#bonus');
     bonusCont.innerText = bonus;
 
-    var scoreCont2 = gameOverScreen.querySelector('#score2');
+    let scoreCont2 = gameOverScreen.querySelector('#score2');
     scoreCont2.innerText = score;
 
-    var bonusCont2 = gameOverScreen.querySelector('#bonus2');
+    let bonusCont2 = gameOverScreen.querySelector('#bonus2');
     bonusCont2.innerText = bonus;
     
-    var totalScoreCont = gameOverScreen.querySelector('#totalScore');
+    let totalScoreCont = gameOverScreen.querySelector('#totalScore');
     totalScoreCont.innerText = score * 100 + bonus * 50;
   
     document.body.appendChild(gameOverScreen);
