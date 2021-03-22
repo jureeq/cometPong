@@ -129,5 +129,5 @@ Definition of the different states and their transition (transition functions)
 - winScreen
 
 ### Git
-URls for the project repo and deploy
+
 [Link Repo](https://github.com/jureeq/meteorPong)
