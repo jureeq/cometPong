@@ -10,7 +10,7 @@ meteorPong is a simple game where you must defend planet Earth from a dangerous 
 ## MVP (DOM - CANVAS)
 MVP definition, deliverables.
 
-Create start screen with 'Start' button. Create a game screen consisting of a planet, a defending platform (shield), and meteorites. The platform moves only to the left and right. The player has 5 lives. When these are lost, an end game window appears, allowing the player to play again.
+Create start screen with 'Start' button. Create a game screen consisting of a planet, a defending platform (shield), and meteorites. The platform moves only to the left and right. The player has 5 lives. When these are lost, an end game screen appears, allowing the player to play again.
 
 ## Backlog
 
